@@ -1,0 +1,5 @@
+version: '3'
+services: 
+  gremlin:
+    image: tinkerpop/gremlin-console
+    

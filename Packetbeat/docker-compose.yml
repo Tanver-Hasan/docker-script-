@@ -1,0 +1,16 @@
+version: '3'
+services: 
+  packetbeat:
+    image: docker.elastic.co/beats/packetbeat:6.4.2
+    container_name: packetbeat
+    cap_add: ['NET_RAW', 'NET_ADMIN']
+    network_mode: host
+    command: -e -E 'output.elasticsearch.hosts=["localhost:9200"]'
+    depends_on: ['elasticsearch', 'kibana']
+        healthcheck:
+      test: packetbeat test config
+      interval: 30s
+      timeout: 15s
+      retries: 5
+
+
